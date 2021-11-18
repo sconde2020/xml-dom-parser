@@ -7,6 +7,7 @@ public class Staff {
     private String nickname;
     private String salary;
     private String currency;
+    private String optional;
 
     public Staff() {
     }
@@ -59,15 +60,24 @@ public class Staff {
         this.currency = currency;
     }
 
+    public String getOptional() {
+        return optional;
+    }
+
+    public void setOptional(String optional) {
+        this.optional = optional;
+    }
+
     @Override
     public String toString() {
-        return "Staff {" +
+        return "Staff{" +
                 "id='" + id + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", salary='" + salary + '\'' +
                 ", currency='" + currency + '\'' +
+                ", optional='" + optional + '\'' +
                 '}';
     }
 }

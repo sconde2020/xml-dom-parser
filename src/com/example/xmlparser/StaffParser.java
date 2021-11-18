@@ -16,7 +16,10 @@ import java.util.List;
 public class StaffParser {
 
     private static String getText(Element element, String textName) {
-        return element.getElementsByTagName(textName).item(0).getTextContent();
+        NodeList nodeList = element.getElementsByTagName(textName);
+        if (nodeList == null || nodeList.getLength() == 0)
+            return null;
+        return nodeList.item(0).getTextContent();
     }
 
     private static String getAttribute(NodeList nodeList, String attributeName) {
@@ -45,7 +48,6 @@ public class StaffParser {
                 Node node = list.item(temp);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
-
                     Staff staff = new Staff();
 
                     // get staff's attribute
@@ -56,7 +58,8 @@ public class StaffParser {
                     staff.setLastname(StaffParser.getText(element, "lastname"));
                     staff.setNickname(StaffParser.getText(element, "nickname"));
                     staff.setSalary(StaffParser.getText(element, "salary"));
-
+                    staff.setOptional(StaffParser.getText(element, "optional"));
+                    
                     // get salary's attribute
                     NodeList salaryNodeList = element.getElementsByTagName("salary");
                     staff.setCurrency(StaffParser.getAttribute(salaryNodeList, "currency"));
